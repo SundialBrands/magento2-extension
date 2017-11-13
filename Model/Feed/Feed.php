@@ -255,7 +255,6 @@ class Feed
      */
     protected function uploadFeed($sourceFile, $destinationFile, $store = null)
     {
-    	
         $this->log('Uploading file');
         $this->log('Local file ' . basename($sourceFile));
         $this->log('Remote file ' . $this->getSFTPHost($store).$destinationFile);
@@ -266,19 +265,7 @@ class Feed
             'password'  => $this->helper->getConfig('feeds/sftp_password', $store)
         );
         $this->log('Username ' . $params['username']);
-		
-		if( !defined( 'SOURCE_LOCAL_FILE' ) ) {
-		
-			define( 'SOURCE_LOCAL_FILE', \phpseclib\Net\SFTP::SOURCE_LOCAL_FILE );
-		
-		}
-		
-		if( !defined( 'SOURCE_STRING' ) ) {
-		
-			define( 'SOURCE_STRING', \phpseclib\Net\SFTP::SOURCE_STRING );
-		
-		}
-		
+
         /** @var Sftp $sftp */
         $sftp = new Sftp();
         $sftp->open($params);
